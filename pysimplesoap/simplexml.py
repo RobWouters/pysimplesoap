@@ -443,7 +443,7 @@ class SimpleXMLElement(object):
                             # (avoid encoding errors in py<3!)
                             value = unicode(node)
                         else:
-                            value = fn(unicode(node))
+                            value = fn(unicode(node).strip())
                     except (ValueError, TypeError) as e:
                         raise ValueError("Tag: %s: %s" % (name, e))
                 else:
