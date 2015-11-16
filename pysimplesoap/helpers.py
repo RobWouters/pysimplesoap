@@ -502,6 +502,15 @@ class Alias(object):
     def __repr__(self):
         return "<alias '%s' for '%s'>" % (self.xml_type, self.py_type)
 
+    def __eq__(self, other):
+        if type(self) != type(other):
+            return False
+        return (self.py_type == other.py_type and
+                self.xml_type == other.xml_type)
+
+    def __hash__(self):
+        return hash(self.py_type) + hash(self.xml_type)
+
 if sys.version > '3':
     long = Alias(int, 'long')
 byte = Alias(str, 'byte')
